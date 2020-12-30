@@ -1,1 +1,1 @@
-# genetic_control_defaults
+# genetic-control-defaults
