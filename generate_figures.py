@@ -1,3 +1,10 @@
+#Visualizations for
+#William Bains, Enrico Borriello, and Dirk Schulze-Makuch,
+#'Evolution of default genetic control mechanisms,'
+#PloS one 16.5 (2021): e0251568. https://doi.org/10.1371/journal.pone.0251568
+
+#Author: Enrico Borriello
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -253,6 +260,9 @@ def plot_figure_3c(csv_path='data/figure_3C.csv', save_path='figure_3c.pdf', sho
     ]:
         ax.plot(x, y_values, linewidth=4, color='white')  # Decorative white line
         ax.plot(x, y_values, linewidth=2, color=color, label=label)
+
+    #pl.tight_layout(pad=.10, w_pad=10, h_pad=10)
+    plt.subplots_adjust(left=4, bottom=4, right=5.5, top=5.5)
 
     # Set limits
     ax.set_xlim(0, 1.5)
@@ -577,8 +587,261 @@ def plot_figure_5(save_path='figure_5.pdf', show_plot=True):
     else:
         plt.close()
 
+#------------------------------------
+
+# FIGURE 6
+
+def plot_figure_6(csv_path='data/figure_6.csv', save_path='figure_6.pdf', show_plot=True):
+    """
+    Plot Figure 6: Relationship between starting gene length and average coding sequence length.
+
+    Parameters
+    ----------
+    csv_path : str
+        Path to the CSV file containing the data.
+    save_path : str
+        Path where the figure will be saved as PDF.
+    show_plot : bool
+        If True, displays the plot. If False, only saves.
+    """
+
+    # Load data
+    data = pd.read_csv(csv_path).astype(float)
+
+    x = data['len1']
+    y = data['len2']
+    colors = data['num']
+    sizes = 1 * colors
+
+    # Create plot
+    fig, ax = plt.subplots()
+
+    scatter = plt.scatter(x, y, c=colors, s=sizes, alpha=0.75, cmap='Spectral')
+    plt.colorbar(scatter, ticks=np.arange(25, 101, 25))
+
+    # Axes limits
+    plt.xlim(1, 6)
+    plt.ylim(0, 12)
+
+    # Labels
+    text_size = 14
+    plt.xlabel('Starting gene length', size=text_size)
+    plt.ylabel('Average coding sequence length\nat fitness plateau', size=text_size)
+    plt.title('Gene number\n', size=text_size)
+
+    # Ticks
+    plt.tick_params(axis='both', labelsize=text_size)
+
+    # Gridlines
+    ax.yaxis.grid(True, linestyle='-', color='whitesmoke')
+    ax.xaxis.grid(True, linestyle='-', color='whitesmoke')
+    plt.grid(which='minor', color='#999999', linestyle='-', alpha=0.2)
+    ax.set_axisbelow(True)
+
+    # Save
+    plt.savefig(save_path, bbox_inches='tight', pad_inches=0.1, dpi=100)
+
+    # Optionally show
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+#------------------------------------
+
+# FIGURE 7
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_figure_7(csv_path='data/figure_7.csv', save_path='figure_7.pdf', show_plot=True):
+    """
+    Plot Figure 7: Relationship between regulatory ratio and gene expression.
+
+    Parameters
+    ----------
+    csv_path : str
+        Path to the CSV file containing the data.
+    save_path : str
+        Path where the figure will be saved as PDF.
+    show_plot : bool
+        If True, displays the plot. If False, only saves.
+    """
+
+    # Load data
+    data = pd.read_csv(csv_path).astype(float)
+
+    x = data['min']
+    y = data['frac']
+    colors = data['size']
+    sizes = 2 * colors
+
+    # Create plot
+    fig, ax = plt.subplots()
+
+    scatter = plt.scatter(x, y, c=colors, s=sizes, alpha=0.75, cmap='Spectral')
+    plt.colorbar(scatter, ticks=np.arange(25, 101, 25))
+
+    # Axes limits
+    plt.xlim(0.5, 2.5)
+    plt.ylim(0, 1)
+
+    # Labels
+    text_size = 14
+    plt.xlabel('min -ve / min +ve', size=text_size)
+    plt.ylabel('Fraction of genes expressed', size=text_size)
+    plt.title('Genome size\n', size=text_size)
+
+    # Ticks
+    plt.tick_params(axis='both', labelsize=text_size)
+
+    # Gridlines
+    ax.yaxis.grid(True, linestyle='-', color='whitesmoke')
+    ax.xaxis.grid(True, linestyle='-', color='whitesmoke')
+    plt.grid(which='minor', color='#999999', linestyle='-', alpha=0.2)
+    ax.set_axisbelow(True)
+
+    # Save
+    plt.savefig(save_path, bbox_inches='tight', pad_inches=0.1, dpi=100)
+
+    # Optionally show
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+#------------------------------------
+
+# FIGURE 8
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_figure_8(csv_path='data/figure_8_all.csv', save_path='figure_8_all.pdf', show_plot=True):
+    """
+    Plot Figure 8: Perfection index vs. element length ratio, colored by time to plateau.
+
+    Parameters
+    ----------
+    csv_path : str
+        Path to the CSV file containing the data.
+    save_path : str
+        Path where the figure will be saved as PDF.
+    show_plot : bool
+        If True, displays the plot. If False, only saves.
+    """
+
+    # Load data
+    data = pd.read_csv(csv_path).astype(float)
+
+    x = data['frac']
+    y = data['avg']
+    colors = data['time']
+    sizes = 0.05 * colors
+
+    # Create plot
+    fig, ax = plt.subplots()
+
+    scatter = plt.scatter(x, y, c=colors, s=sizes, alpha=0.75, cmap='Spectral')
+    plt.colorbar(scatter, ticks=np.arange(0, 20000, 2500))
+
+    # Axes limits
+    plt.xlim(-0.1, 1.1)
+    plt.ylim(0.5, 2.5)
+
+    # Labels
+    text_size = 14
+    plt.xlabel('Perfection index', size=text_size)
+    plt.ylabel('Average -ve el. len. / avg. +ve el. len.', size=text_size)
+    plt.title('Time to plateau\n(all data)\n', size=text_size)
+
+    # Ticks
+    plt.tick_params(axis='both', labelsize=text_size)
+
+    # Gridlines
+    ax.yaxis.grid(True, linestyle='-', color='whitesmoke')
+    ax.xaxis.grid(True, linestyle='-', color='whitesmoke')
+    plt.grid(which='minor', color='#999999', linestyle='-', alpha=0.2)
+    ax.set_axisbelow(True)
+
+    # Save
+    plt.savefig(save_path, bbox_inches='tight', pad_inches=0.1, dpi=100)
+
+    # Optionally show
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
 
+#------------------------------------
 
+# FIGURE 8 replicates
 
+def plot_figure_8_replicates(csv_path='data/figure_8_rep.csv',
+                              save_path='figure_8_rep.pdf',
+                              show_plot=True):
+    """
+    Plot Figure 8 (replicates): Perfection index vs. element length ratio,
+    colored by time to plateau, with annotated regions for replicate sets.
 
+    Parameters
+    ----------
+    csv_path : str
+        Path to the CSV file containing the replicate data.
+    save_path : str
+        Path where the figure will be saved as PDF.
+    show_plot : bool
+        If True, displays the plot. If False, only saves.
+    """
+
+    # Load data
+    data = pd.read_csv(csv_path).astype(float)
+
+    x = data['frac']
+    y = data['avg']
+    colors = data['time']
+    sizes = 0.05 * colors
+
+    # Create plot
+    fig, ax = plt.subplots()
+
+    scatter = plt.scatter(x, y, c=colors, s=sizes, alpha=0.75, cmap='Spectral')
+    plt.colorbar(scatter)
+
+    # Axes limits
+    plt.xlim(0, 1)
+    plt.ylim(0.6, 1.8)
+
+    # Labels and title
+    text_size = 14
+    plt.xlabel('Perfection index', size=text_size)
+    plt.ylabel('Average -ve el. len. / avg. +ve el. len.', size=text_size)
+    plt.title('Time to plateau\n(replicate sets)\n', size=text_size)
+
+    # Tick styling
+    plt.tick_params(axis='both', labelsize=text_size)
+
+    # Gridlines
+    ax.yaxis.grid(True, linestyle='-', color='whitesmoke')
+    ax.xaxis.grid(True, linestyle='-', color='whitesmoke')
+    plt.grid(which='minor', color='#999999', linestyle='-', alpha=0.2)
+    ax.set_axisbelow(True)
+
+    # Annotations and dividers
+    plt.plot([0.625, 0.625], [0.6, 1.8], '--', color='darkgray')
+    plt.plot([0, 0.625], [1.1, 1.1], '--', color='darkgray')
+    plt.text(0.05, 1.65, "set 3", va='bottom', size=12)
+    plt.text(0.05, 0.95, "set 2", va='bottom', size=12)
+    plt.text(0.68, 1.65, "set 1", va='bottom', size=12)
+
+    # Save plot
+    plt.savefig(save_path, bbox_inches='tight', pad_inches=0.1, dpi=100)
+
+    # Show or close
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
