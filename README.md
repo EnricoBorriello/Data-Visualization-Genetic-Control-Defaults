@@ -15,7 +15,11 @@ This repository contains Python code for generating the figures published in:
 │   ├── figure_3C.csv
 │   ├── figure_3D.csv
 │   ├── figure_3E.txt
-│   └── figure_4.csv
+│   ├── figure_4.csv
+│   ├── figure_5.csv
+│   ├── figure_6.csv
+│   ├── figure_7.csv
+│   └── figure_8.csv
 └── output/                   # (Optional) Folder where PDFs can be saved
     ├── figure_1.pdf
     ├── figure_3a.pdf
@@ -23,7 +27,11 @@ This repository contains Python code for generating the figures published in:
     ├── figure_3c.pdf
     ├── figure_3d.pdf
     ├── figure_3e.pdf
-    └── figure_4.pdf
+    ├── figure_4.pdf
+    ├── figure_5.pdf
+    ├── figure_6.pdf
+    ├── figure_7.pdf
+    └── figure_8.pdf
 ```
 
 ## Requirements
