@@ -59,8 +59,12 @@ python generate_figures.py
 Alternatively, import the module in a Python or Jupyter environment:
 
 ```python
-from generate_figures import plot_figure_1, plot_figure_3a, ...
-plot_figure_1()
+from generate_figures import (
+    plot_figure_1, plot_figure_3a, plot_figure_3b, plot_figure_3c,
+    plot_figure_3d, plot_figure_3e, plot_figure_4,
+    plot_figure_5, plot_figure_6, plot_figure_7, plot_figure_8
+)
+plot_figure_5()
 ```
 
 Each function accepts optional arguments:
@@ -70,15 +74,17 @@ Each function accepts optional arguments:
 
 ## Figures
 
-### Figure 1
-- Relative number of genomes by domain vs. genome size (log scale)
-
-### Figures 3A - 3E
-- Simulated fitness over evolutionary time
+- Figure 1: Relative number of genomes by domain vs. genome size (log scale)
+- Figure 3A: Fitness trajectory over time for a single genome in a static environment
+- Figure 3B: Fitness trajectory under a fluctuating environment
+- Figure 3C: Comparison of fitness trajectories across multiple simulation replicates
 - Figure 3D: 3D visualization of fitness trajectories for multiple organisms
-
-### Figure 4
-- Scatter plot of genome size vs. environmental complexity, colored by a "perfection index"
+- Figure 3E: Fitness trajectory for a genome with regulatory control evolution enabled
+- Figure 4: Scatter plot of genome size vs. environmental complexity, colored by a "perfection index"
+- Figure 5: Frequency of regulatory gene acquisition events over evolutionary time across simulations
+- Figure 6: Heatmap of gene expression patterns under different regulatory configurations
+- Figure 7: Correlation between gene regulatory complexity and environmental variability
+- Figure 8: Principal Component Analysis (PCA) of simulated genomes colored by evolutionary outcome
 
 ## Notes
 - Ensure all data files are placed correctly under the `data/` folder.
@@ -92,3 +98,4 @@ This code is shared for academic and non-commercial use. Please cite the origina
 **Author:** Enrico Borriello
 
 For questions, please refer to the contact information in the original publication.
+
